@@ -1,0 +1,19 @@
+
+class Solution
+{
+    public int TotalWays(int N)
+    {
+        long mod = 1000000007;
+        long[] fibonacci = new long[N + 1];
+        fibonacci[0] = 1;
+        fibonacci[1] = 1;
+        for (int i = 2; i <= N; i++) {
+            fibonacci[i] = (fibonacci[i - 1] % mod + fibonacci[i - 2] % mod) % mod;
+            
+        }
+        long oneSideWays = (fibonacci[N] + fibonacci[N - 1]) % mod;
+        long twoSideWays = oneSideWays * oneSideWays;
+        twoSideWays %= mod;
+        return (int)twoSideWays;
+    }
+}
